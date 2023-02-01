@@ -9,10 +9,9 @@
 | user_name_first_reading     | string      | null: false               |
 | user_name_last_reading      | string      | null: false               |
 | nickname                    | string      | null: false               |
-| birthday                    | string      | null: false               |
+| birthday                    | data        | null: false               |
 | email                       | string      | null: false, unique: true |
 | encrypted_password          | string      | null: false               |
-| encrypted_password_confirm  | string      | null: false               |
 
 ### Association
 
@@ -23,23 +22,20 @@
 
 | Column               | Type       | Options                        |
 |----------------------|------------|--------------------------------|
-| item_name            | text       | null: false                    |
-| category             | string     | null: false                    |
-| image                | references | null: false, foreign_key: true |
+| item_name            | string     | null: false                    |
+| category_id          | integer    | null: false                    |
 | information          | text       | null: false                    |
-| status               | string     | null: false                    |
-| delivery_charge      | string     | null: false                    |
-| user_area            | string     | null: false                    |
-| days_to_delivery     | string     | null: false                    |
+| status_id            | integer    | null: false                    |
+| delivery_charge_id   | integer    | null: false                    |
+| prefecture_id        | integer    | null: false                    |
+| days_to_delivery_id  | integer    | null: false                    |
 | price                | integer    | null: false                    |
-| sold                 | string     | null: false                    |
 | user                 | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_one    :order
-- has_one    :user
 
 ## orders table
 
@@ -50,26 +46,24 @@
 
 ### Association
 
-- belongs_to :item
-- has_one    :item
+- belongs_to :user
 - has_one    :delivery_address
-- has_one    :user
+- has_one    :item
 
 ## delivery_addresses table
 
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| postal_code   | string     | null: false                    |
-| prefecture    | integer    | null: false                    |
-| city          | string     | null: false,                   |
-| house_number  | string     | null: false                    |
-| building_name | string     | null: false                    |
-| phone_number  | integer    | null: false                    |
-| user          | references | null: false, foreign_key: true |
+| Column           | Type       | Options       |
+|------------------|------------|---------------|
+| postal_code_id   | integer    | null: false   |
+| prefecture_id    | integer    | null: false   |
+| city             | string     | null: false   |
+| house_number     | string     | null: false   |
+| building_name    | string     |               |
+| phone_number     | string     | null: false   |
+| user             | references | null: false   |
 
 ### Association
 
 - belongs_to :order
 - has_one    :user
 - has_one    :item
-- has_one    :order
