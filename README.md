@@ -9,7 +9,7 @@
 | user_name_first_reading     | string      | null: false               |
 | user_name_last_reading      | string      | null: false               |
 | nickname                    | string      | null: false               |
-| birthday                    | data        | null: false               |
+| birthday                    | date        | null: false               |
 | email                       | string      | null: false, unique: true |
 | encrypted_password          | string      | null: false               |
 
