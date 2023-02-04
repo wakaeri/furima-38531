@@ -12,6 +12,47 @@ RSpec.describe User, type: :model do
       end
     end
     context '新規登録できないとき' do
+      it 'user_name_firstが空だと保存できないこと' do
+        @user.user_name_first = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("User name first can't be blank")
+      end
+      it 'user_name_firstが全角日本語でないと保存できないこと' do
+        @user.user_name_first = 'suzuki'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('User name first is invalid')
+      end
+      it 'user_name_first_readingが空だと保存できないこと' do
+        @user.user_name_first_reading = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("User name first reading can't be blank")
+      end
+      it 'user_name_first_readingが全角カタカナでないと保存できないこと' do
+        @user.user_name_first_reading = 'すずき'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('User name first reading is invalid')
+      end
+      it 'user_name_lastが空だと保存できないこと' do
+        @user.user_name_last = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("User name last can't be blank")
+      end
+      it 'user_name_lastが全角日本語でないと保存できないこと' do
+        @user.user_name_last = 'suzuki'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('User name last is invalid')
+      end
+      it 'user_name_last_readingが空だと保存できないこと' do
+        @user.user_name_last_reading = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("User name last reading can't be blank")
+      end
+      it 'user_name_last_readingが全角カタカナでないと保存できないこと' do
+        @user.user_name_last_reading = 'すずき'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('User name last reading is invalid')
+      end
+
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
         @user.valid?
@@ -33,11 +74,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
-      # it 'nicknameが7文字以上では登録できない' do
-      #   @user.nickname = 'aaaaaaa'
-      #   @user.valid?
-      #   expect(@user.errors.full_messages).to include('Nickname is too long (maximum is 6 characters)')
-      # end
       it '重複したemailが存在する場合は登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -61,6 +97,11 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
+      end
+      it 'birthdayが空だと保存できないこと' do
+        @user.birthday = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
     end  
   end
