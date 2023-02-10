@@ -61,7 +61,7 @@
 | house_number     | string     | null: false   |
 | building_name    | string     |               |
 | phone_number     | string     | null: false   |
-| user             | references | null: false   |
+| order            | references | null: false   |
 
 ### Association
 
