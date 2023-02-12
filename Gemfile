@@ -60,10 +60,6 @@ group :development do
   gem 'rubocop', require: false
 end
 
-group :production do
-  gem 'pg'
-end
-
 gem "pry-rails"
 
 gem "devise"
@@ -74,3 +70,7 @@ gem 'image_processing', '~> 1.2'
 gem 'active_hash'
 
 gem 'payjp'
+
+group :production do
+  gem 'pg'
+end
