@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :nickname,                presence: true
   validates :birthday,                presence: true
   
-  VALID_PASSWORD_REGEX = /\A[a-z0-9]{6,}+\z/i
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]{6,}+\z/i
   validates :password, format: { with: VALID_PASSWORD_REGEX }
 
 
